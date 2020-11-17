@@ -49,12 +49,13 @@ public final class BadgeButton extends TextView {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.BadgeButton);
         String badgeText = a.getString(R.styleable.BadgeButton_btnBadgeText);
         int badgeColor = a.getColor(R.styleable.BadgeButton_btnBadgeColor, 0xffFF4081);
-        int badgeHeight = a.getDimensionPixelSize(R.styleable.BadgeButton_btnBadgeHeight, (int)(getResources().getDisplayMetrics().density * 12));
+        int badgeTextColor = a.getColor(R.styleable.BadgeButton_btnBadgeTextColor, 0xffffffff);
+        int badgeHeight = a.getDimensionPixelSize(R.styleable.BadgeButton_btnBadgeHeight, (int) (getResources().getDisplayMetrics().density * 12));
         boolean badgeVisible = a.getBoolean(R.styleable.BadgeButton_btnBadgeVisible, false);
         a.recycle();
 
 
-        mBadgeDrawable = new BadgeDrawable(badgeHeight, badgeColor);
+        mBadgeDrawable = new BadgeDrawable(badgeHeight, badgeColor, badgeTextColor);
         mBadgeDrawable.setVisible(badgeVisible);
         mBadgeDrawable.setText(badgeText);
 
@@ -81,6 +82,7 @@ public final class BadgeButton extends TextView {
         mBadgeDrawable.setText(text);
         return this;
     }
+
     public BadgeButton setBadgeVisible(boolean visible) {
         mBadgeDrawable.setVisible(visible);
         return this;
@@ -93,7 +95,7 @@ public final class BadgeButton extends TextView {
         if (getCompoundDrawables()[1] != null) {
             mBadgeDrawable.layout((width + getCompoundDrawables()[1].getIntrinsicWidth()) / 2, getPaddingTop(), width);
         } else {
-            mBadgeDrawable.layout((width + (int)getLayout().getLineWidth(0)) / 2, getPaddingTop(), width);
+            mBadgeDrawable.layout((width + (int) getLayout().getLineWidth(0)) / 2, getPaddingTop(), width);
         }
 
     }
@@ -111,11 +113,11 @@ public final class BadgeButton extends TextView {
 
         private int mHeight = 0;
 
-        public BadgeDrawable(int height, int color) {
+        public BadgeDrawable(int height, int color, int textColor) {
 
             setColor(color);
 
-            mPaint.setColor(0xffffffff);
+            mPaint.setColor(textColor);
             mPaint.setTextAlign(Paint.Align.CENTER);
             mPaint.setTextSize(height * 0.8f);
 
@@ -124,7 +126,7 @@ public final class BadgeButton extends TextView {
 
         void layout(int x, int y, int max) {
             Rect rect = getBounds();
-            rect.offsetTo(Math.min(x - rect.width() / 2, max - rect.width() - (int)(0.2f * mHeight)), Math.max(0, y - rect.height() / 2));
+            rect.offsetTo(Math.min(x - rect.width() / 2, max - rect.width() - (int) (0.2f * mHeight)), Math.max(0, y - rect.height() / 2));
             setBounds(rect);
         }
 
@@ -137,10 +139,10 @@ public final class BadgeButton extends TextView {
         public void setText(String text) {
             mText = text;
             if (TextUtils.isEmpty(mText)) {
-                int size = (int)(mHeight * 0.65);
+                int size = (int) (mHeight * 0.65);
                 resize(size, size);
             } else {
-                int width = (int)(mPaint.measureText(mText) + 0.4 * mHeight);
+                int width = (int) (mPaint.measureText(mText) + 0.4 * mHeight);
                 resize(Math.max(width, mHeight), mHeight);
             }
         }

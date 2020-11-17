@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2016 czy1121
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,13 +18,15 @@
 
     <declare-styleable name="BadgeButton">
         <!-- 徽标文本，为空时显示一个小红点 -->
-        <attr name="btnBadgeText" format="string"/>
+        <attr name="btnBadgeText" format="string" />
         <!-- 徽标高度，宽度自适应 -->
-        <attr name="btnBadgeHeight" format="dimension"/>
+        <attr name="btnBadgeHeight" format="dimension" />
         <!-- 徽标背景色，文本白色 -->
-        <attr name="btnBadgeColor" format="color"/>
+        <attr name="btnBadgeColor" format="color" />
         <!-- 徽标是否可见 -->
-        <attr name="btnBadgeVisible" format="boolean"/>
+        <attr name="btnBadgeVisible" format="boolean" />
+        <!-- 徽标文本颜色 -->
+        <attr name="btnBadgeTextColor" format="color" />
     </declare-styleable>
 
 </resources>
