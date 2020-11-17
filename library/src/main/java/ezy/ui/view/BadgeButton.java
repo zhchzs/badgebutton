@@ -143,7 +143,7 @@ public final class BadgeButton extends TextView {
                 resize(size, size);
             } else {
                 int width = (int) (mPaint.measureText(mText) + 0.6 * mHeight);
-                resize((int) (Math.max(width, mHeight) * 1.4), (int) (mHeight * 1.4));
+                resize((int) (Math.max(width, mHeight) * 1.3), (int) (mHeight * 1.3));
             }
         }
 
